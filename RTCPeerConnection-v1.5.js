@@ -129,6 +129,7 @@ var RTCPeerConnection = function (options) {
         console.debug('offer-sdp', options.offerSDP.sdp);
         peer.setRemoteDescription(new RTCSessionDescription(options.offerSDP)).then(function() {
             peer.createAnswer(constraints).then(function(sessionDescription) {
+                sessionDescription.sdp.replace('useinbandfec=1', 'useinbandfec=1; stereo=1; maxaveragebitrate=510000');
                 peer.setLocalDescription(sessionDescription).then(function() {
                     options.onAnswerSDP(sessionDescription);
                     console.debug('answer-sdp', sessionDescription.sdp);
