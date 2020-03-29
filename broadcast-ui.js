@@ -85,14 +85,26 @@ function captureUserMedia(callback) {
 
     getUserMedia({
         video: audio,
-        constraints: { audio: true, video: false },
+        constraints: {
+            audio: {
+                autoGainControl: false,
+                channelCount: 2,
+                echoCancellation: false,
+                latency: 0,
+                noiseSuppression: false,
+                sampleRate: 48000,
+                sampleSize: 16,
+                volume: 1.0
+            },
+            video: false
+        },
         onsuccess: function(stream) {
             config.attachStream = stream;
             callback && callback();
 
             audio.muted = true;
             audio.volume = 0;
-            
+
             rotateAudio(audio);
         },
         onerror: function() {
