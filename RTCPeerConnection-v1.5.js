@@ -242,7 +242,16 @@ var video_constraints = {
 
 function getUserMedia(options) {
     navigator.mediaDevices.getUserMedia(options.constraints || {
-            audio: true,
+            audio: {
+                autoGainControl: false,
+                channelCount: 2,
+                echoCancellation: false,
+                latency: 0,
+                noiseSuppression: false,
+                sampleRate: 48000,
+                sampleSize: 16,
+                volume: 1.0
+            },
             video: video_constraints
         }).then(function(stream) {
             var video = options.video;
