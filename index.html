@@ -369,7 +369,7 @@
                     }
 
                     if (skip_video)
-                        alert ('video camera is busy, trying to get audio only');
+                        alert ('video camera is busy, trying to get audio only. captured: ' + isWebcamAlreadyCaptured + '; hasWebcam: ' + hasWebcam);
 
                     getUserMedia({
                         video: video,
